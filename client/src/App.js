@@ -1,20 +1,41 @@
-import React, { useEffect, useState } from 'react';
+// client/src/App.js
+
+import React, { useState, useEffect } from 'react';
+import './App.css';
 
 function App() {
-  const [message, setMessage] = useState('');
+  const [users, setUsers] = useState([]);
+  const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    fetch('https://react-app-ezey.onrender.com/api') // Update to your backend URL
-      .then(response => response.json())
-      .then(data => setMessage(data.message))
-      .catch(error => console.error('Error fetching data:', error));
+    // Fetch users data from backend
+    fetch('/users')
+      .then(res => res.json())
+      .then(data => setUsers(data))
+      .catch(error => console.log('Error fetching users:', error));
+
+    // Fetch posts data from backend API
+    fetch('/api/posts')
+      .then(res => res.json())
+      .then(data => setPosts(data))
+      .catch(error => console.log('Error fetching posts:', error));
   }, []);
 
   return (
     <div className="App">
-      <header className="App-header">
-        <p>{message}</p>
-      </header>
+      <h1>Users:</h1>
+      <ul>
+        {users.map(user => (
+          <li key={user.id}>{user.name}</li>
+        ))}
+      </ul>
+
+      <h1>Posts:</h1>
+      <ul>
+        {posts.map(post => (
+          <li key={post.id}>{post.title}</li>
+        ))}
+      </ul>
     </div>
   );
 }

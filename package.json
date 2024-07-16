@@ -1,0 +1,14 @@
+{
+    "name": "react-app",
+    "version": "1.0.0",
+    "scripts": {
+        "start": "concurrently \"npm run start-backend\" \"npm run start-frontend\"",
+        "start-backend": "cd server && npm start",
+        "start-frontend": "cd client && npm start",
+        "build": "cd client && npm run build",
+        "test": "echo 'No tests defined'"
+    },
+    "devDependencies": {
+        "concurrently": "^8.2.2"
+    }
+}
