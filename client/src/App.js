@@ -1,21 +1,18 @@
-import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import React, { useEffect, useState } from 'react';
 
 function App() {
-  const [data, setData] = React.useState(null);
+  const [message, setMessage] = useState('');
 
-  React.useEffect(() => {
-    fetch("/api")
-      .then((res) => res.json())
-      .then((data) => setData(data.message));
+  useEffect(() => {
+    fetch('https://react-app-ezey.onrender.com/api') // Update this URL
+      .then(response => response.json())
+      .then(data => setMessage(data.message));
   }, []);
 
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>{!data ? "Loading..." : data}</p>
+        <p>{message}</p>
       </header>
     </div>
   );

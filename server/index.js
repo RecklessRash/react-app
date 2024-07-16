@@ -1,9 +1,14 @@
 const express = require("express");
 const path = require("path");
+const cors = require("cors");
 
 const PORT = process.env.PORT || 3001;
 
 const app = express();
+
+app.use(cors({
+  origin: 'https://react-app-1-11yk.onrender.com', // Update this URL
+}));
 
 // Serve the static files from the React app
 app.use(express.static(path.resolve(__dirname, '../client/build')));
