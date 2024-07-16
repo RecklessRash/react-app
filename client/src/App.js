@@ -4,9 +4,10 @@ function App() {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    fetch('https://react-app-ezey.onrender.com/api') // Update this URL
+    fetch('https://react-app-ezey.onrender.com/api') // Update to your backend URL
       .then(response => response.json())
-      .then(data => setMessage(data.message));
+      .then(data => setMessage(data.message))
+      .catch(error => console.error('Error fetching data:', error));
   }, []);
 
   return (
