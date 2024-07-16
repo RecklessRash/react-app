@@ -1,12 +1,21 @@
 // server/index.js
 
 const express = require('express');
+const cors = require('cors');
 const path = require('path');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
 
-// Example route without /api prefix
+// Specify origin of frontend
+const corsOptions = {
+  origin: 'https://react-app-1-11yk.onrender.com', // Replace with your frontend URL
+};
+
+// Enable CORS with options
+app.use(cors(corsOptions));
+
+// Example route to serve users data
 app.get('/users', (req, res) => {
   // Simulated data for demonstration
   const users = [
@@ -16,7 +25,7 @@ app.get('/users', (req, res) => {
   res.json(users);
 });
 
-// Example route with /api prefix
+// Example route to serve posts data via /api prefix
 app.get('/api/posts', (req, res) => {
   // Simulated data for demonstration
   const posts = [

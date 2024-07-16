@@ -9,16 +9,16 @@ function App() {
 
   useEffect(() => {
     // Fetch users data from backend
-    fetch('/users')
+    fetch('https://react-app-ezey.onrender.com/users') // Replace with your backend URL
       .then(res => res.json())
       .then(data => setUsers(data))
-      .catch(error => console.log('Error fetching users:', error));
+      .catch(error => console.error('Error fetching users:', error));
 
     // Fetch posts data from backend API
-    fetch('/api/posts')
+    fetch('https://react-app-ezey.onrender.com/api/posts') // Replace with your backend URL
       .then(res => res.json())
       .then(data => setPosts(data))
-      .catch(error => console.log('Error fetching posts:', error));
+      .catch(error => console.error('Error fetching posts:', error));
   }, []);
 
   return (
